@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 
 const SearchForm = ({startSearch, params, setParams}) => {
-    
     return (
         <div>
             <Form className="mb-4">
