@@ -27,7 +27,7 @@ const App = () => {
   const BASE_URL = 'https://api.giphy.com/v1/gifs';
   const query = params;
 
-  const startSearch = event => {
+  const startSearch = () => {
     dispatch({ type: 'FETCH_GIPHY_START', });
     axios.get(BASE_URL + `/search?api_key=${API_KEY}&q=${query}&limit=25&offset=0&rating=g&lang=es`)
       .then(res => {
@@ -39,7 +39,7 @@ const App = () => {
   }
 
   let giphies = state.giphies.map(giphy =>
-    <img className="img-thumbnail" src={giphy.images.fixed_height.url} alt="this slowpoke moves" />
+    <img key={giphy.id} className="img-thumbnail" src={giphy.images.fixed_height.url} alt="this slowpoke moves" />
   )
   if (state.loading) {
     giphies = <Spinner animation="border" />
@@ -56,9 +56,7 @@ const App = () => {
       <SearchForm params={params} setParams={setParams} startSearch={startSearch} />
       <Container>
         {giphies}
-
       </Container>
-      {/* <Spinner animation="border" /> */}
     </Container>
   );
 }
